@@ -11,12 +11,12 @@ const BASE_THEME = preset as Theme;
 const theme: Theme = {
   ...BASE_THEME,
   colors: {
-    background: '#FFFFFF',
+    background: '#000000',
     muted: '#f0e6f6',
     gray: '#ddd',
     text: '#333333',
 
-    primary: '#7c37ad',
+    primary: '#fff',
     secondary: '#ff4081',
     highlight: '#ff79b0',
   },
