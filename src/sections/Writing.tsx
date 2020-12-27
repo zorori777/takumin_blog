@@ -4,10 +4,15 @@ import Section from '../components/Section';
 import { CardContainer } from '../components/Card';
 import Triangle from '../components/Triangle';
 import { useMediumQuery } from '../queries/useMediumQuery';
+import usePostQuery from '../queries/usePostQuery';
+
 import { Post } from '../components/Post';
 
 const Writing = () => {
   const { posts } = useMediumQuery();
+  const data = usePostQuery();
+
+  // console.debug(data);
 
   return (
     <Section.Container id="writing">

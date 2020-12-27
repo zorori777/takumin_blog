@@ -6,6 +6,7 @@ import { MediumAuthor, MediumPost as MediumPostType } from '../types';
 import { MEDIUM_URL } from '../utils/constants';
 import { Card } from './Card';
 import ImageLabel from './ImageLabel';
+import { renderRichText } from 'gatsby-source-contentful/rich-text';
 
 type PostProps = MediumPostType;
 

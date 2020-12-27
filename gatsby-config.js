@@ -9,6 +9,7 @@ const plugins = [
   'gatsby-plugin-typescript',
   'gatsby-plugin-styled-components',
   'gatsby-transformer-remark',
+  `gatsby-plugin-sharp`,
   {
     resolve: 'gatsby-plugin-manifest',
     options: {
