@@ -35,6 +35,12 @@ const plugins = [
       username: about.mediumUser || '@medium',
     },
   },
+  {
+    resolve: 'gatsby-plugin-graphql-codegen',
+    options: {
+      fileName: `types/graphql-types.d.ts`,
+    },
+  },
 ];
 
 if (ANALYTICS_ID) {
