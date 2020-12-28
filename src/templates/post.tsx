@@ -38,7 +38,10 @@ const Post = ({ data }: Props) => {
               <Flex justifyContent={'center'}>
                 <Content width={[1, 8 / 10]}>
                   <div>
-                    {renderRichText(item.node.content, contentfulRenderOptions)}
+                    {renderRichText(
+                      item.node.content as any,
+                      contentfulRenderOptions,
+                    )}
                   </div>
                 </Content>
               </Flex>
