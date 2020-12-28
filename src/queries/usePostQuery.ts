@@ -2,12 +2,12 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { ContentfulPostConnection } from '../../types/graphql-types';
 
-type PostType = {
+type ContentfulPostType = {
   allContentfulPost: ContentfulPostConnection;
 };
 
 export const usePostQuery = () => {
-  const data = useStaticQuery<PostType>(graphql`
+  const data = useStaticQuery<ContentfulPostType>(graphql`
     {
       allContentfulPost {
         edges {

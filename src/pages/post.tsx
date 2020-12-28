@@ -1,43 +1,49 @@
 import React from 'react';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
-import { Options } from '@contentful/rich-text-react-renderer';
-
 import usePostQuery from '../queries/usePostQuery';
-import { BLOCKS, MARKS } from '@contentful/rich-text-types';
+import { contentfulRenderOptions } from '../utils/contentfulRenderOption';
+import { Box, Flex, Image, Text, Heading } from 'rebass/styled-components';
 import styled from 'styled-components';
+import { padding } from 'polished';
 
 const Post = () => {
   const data = usePostQuery();
-  console.debug(data);
 
   return (
-    <div>
+    <Box>
       {data.allContentfulPost.edges.map((item) => {
         return (
-          <div>
-            test
-            <div>{renderRichText(item.node.content, options)}</div>
-          </div>
+          <Flex justifyContent={'center'} flexDirection={'column'}>
+            <Header
+              justifyContent={'center'}
+              flexDirection={'column'}
+              alignItems="center"
+            >
+              <Heading fontSize={[3, 4, 5]} color="primary">
+                {item.node.title}
+              </Heading>
+              <Text>{item.node.publishedAt}</Text>
+            </Header>
+            <Flex justifyContent={'center'}>
+              <Content width={[1, 8 / 10]}>
+                <div>
+                  {renderRichText(item.node.content, contentfulRenderOptions)}
+                </div>
+              </Content>
+            </Flex>
+          </Flex>
         );
       })}
-    </div>
+    </Box>
   );
 };
 
 export default Post;
 
-const options: Options = {
-  renderNode: {
-    [BLOCKS.QUOTE]: (node, children) => {
-      return <Quote>{children}</Quote>;
-    },
-  },
-};
-
-const Quote = styled.pre`
-  background: #f5f5f5;
-  color: #777777;
-  font-style: italic;
-  padding: 16px;
-  border-left: 4px solid #9dd4ff;
+const Content = styled(Box)`
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
 `;
+
+const Header = styled(Flex)``;
