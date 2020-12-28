@@ -3,30 +3,16 @@ import styled from 'styled-components';
 import { Text, Box, Flex } from 'rebass/styled-components';
 import { Fade } from 'react-awesome-reveal';
 import SocialLink from './SocialLink';
-import Link from './Link';
 import { useSiteQuery } from '../queries/useSiteQuery';
-import { CONTENTFUL_URL, GATSBY_URL, NETLIFY_URL } from '../utils/constants';
 
 const Footer = () => {
-  const { name, socialLinks } = useSiteQuery();
+  const { socialLinks } = useSiteQuery();
 
   return (
-    <Box p={[2, 3]} backgroundColor="primary" id="footer">
+    <Box p={[2, 3]} backgroundColor="#fff" id="footer">
       <FooterContainer>
-        <Fade direction="left" triggerOnce>
-          <TextWrapper fontSize={[2, 3]}>
-            <span>{`${name} Portfolio - Powered by `}</span>
-            <Link href={GATSBY_URL}>Gatsby</Link>
-            <span>, </span>
-            <Link href={CONTENTFUL_URL}>Contentful</Link>
-            <span> and </span>
-            <Link href={NETLIFY_URL}>Netlify</Link>{' '}
-            <span role="img" aria-label="heart">
-              ❤️
-            </span>
-          </TextWrapper>
-        </Fade>
-        <Flex>
+        <Fade direction="left" triggerOnce></Fade>
+        <Flex justifyContent="center">
           <Fade direction="right" triggerOnce cascade damping={0.5}>
             {socialLinks.map((sl) => (
               <Box mx={[2, 3]} fontSize={[4, 5]} key={sl.name}>
@@ -44,7 +30,7 @@ const FooterContainer = styled.div`
   max-width: 1366px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: auto;
 
@@ -55,10 +41,6 @@ const FooterContainer = styled.div`
       margin-bottom: 10px;
     }
   }
-`;
-
-const TextWrapper = styled(Text)`
-  color: ${({ theme }) => theme.colors.background};
 `;
 
 export default Footer;

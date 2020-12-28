@@ -15,17 +15,7 @@ const LandingPage = () => {
   const aboutSection = useScrollSection('about');
 
   return (
-    <Section.Container id="home" Background={Background}>
-      <Heading
-        textAlign="center"
-        as="h1"
-        color="primary"
-        fontSize={[6, 7]}
-        mb={[3, 4, 5]}
-      >
-        {`Hello, I'm ${name}!`}
-      </Heading>
-
+    <Section.Container id="home">
       <Heading
         as="h2"
         color="primary"
@@ -35,13 +25,13 @@ const LandingPage = () => {
         style={centerHorizontally}
       >
         <TextLoop interval={5000}>
-          {roles
-            .sort(() => (deterministic ? 1 : Math.random() - 0.5))
-            .map((text) => (
+          {['こんにちは', 'わたなべたくみです。', '以後お見知りおきを。'].map(
+            (text) => (
               <Text width={[300, 500]} key={text}>
                 {text}
               </Text>
-            ))}
+            ),
+          )}
         </TextLoop>
       </Heading>
 
