@@ -1,8 +1,7 @@
 import React from 'react';
 import Headroom from 'react-headroom';
-import { Button, Flex, Image } from 'rebass/styled-components';
+import { Flex } from 'rebass/styled-components';
 import styled from 'styled-components';
-import { useScrollSection, useScrollSections } from 'react-scroll-section';
 
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
@@ -37,16 +36,8 @@ const HomeLink = () => {
   return (
     <Link to={'/'}>
       <Flex justifyContent="center">
-        {/* <Image
-          src={profile.bigIcon.src}
-          height={['60px', '80px']}
-          width={['60px', '80px']}
-          alt="Portfolio Logo"
-          p={2}
-          css={{ borderRadius: '20px', cursor: 'pointer' }}
-        /> */}
         <Img
-          fluid={data.placeholderImage.childImageSharp.fluid}
+          fluid={data.placeholderImage.childImageSharp!.fluid}
           style={{
             width: '60px',
           }}
