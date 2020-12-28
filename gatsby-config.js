@@ -1,4 +1,5 @@
 const about = require('./about.json');
+const path = require(`path`);
 
 require('dotenv').config();
 
@@ -9,17 +10,16 @@ const plugins = [
   'gatsby-plugin-typescript',
   'gatsby-plugin-styled-components',
   'gatsby-transformer-remark',
-  `gatsby-plugin-sharp`,
   {
     resolve: 'gatsby-plugin-manifest',
     options: {
-      name: `${about.name} Portfolio`,
-      short_name: about.name,
+      name: `takumin Portfolio`,
+      short_name: 'takumin',
       start_url: '/',
       background_color: about.colors.background,
       theme_color: about.colors.primary,
       display: 'minimal-ui',
-      icon: 'media/icon.png',
+      icon: 'src/images/sit-dog.png',
     },
   },
   'gatsby-plugin-offline',
@@ -42,6 +42,15 @@ const plugins = [
       fileName: `types/graphql-types.d.ts`,
     },
   },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `images`,
+      path: path.join(__dirname, `src`, `images`),
+    },
+  },
+  `gatsby-plugin-sharp`,
+  `gatsby-transformer-sharp`,
 ];
 
 if (ANALYTICS_ID) {
