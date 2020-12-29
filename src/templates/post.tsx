@@ -56,7 +56,7 @@ const Post = ({ data }: Props) => {
                 )}
               </Flex>
               <Flex justifyContent={'center'}>
-                <Content width={[1, 8 / 10]}>
+                <Content width={[1, 8 / 10]} maxWidth={960}>
                   <div>
                     {renderRichText(
                       item.node.content as any,
@@ -88,6 +88,21 @@ export const query = graphql`
         node {
           content {
             raw
+            references {
+              ... on ContentfulAsset {
+                contentful_id
+                __typename
+                file {
+                  url
+                }
+                fluid {
+                  base64
+                  tracedSVG
+                  srcWebp
+                  srcSetWebp
+                }
+              }
+            }
           }
           title
           publishedAt

@@ -11545,7 +11545,14 @@ export type Unnamed_4_QueryVariables = Exact<{
 
 export type Unnamed_4_Query = { allContentfulPost: { edges: Array<{ node: (
         Pick<ContentfulPost, 'title' | 'publishedAt' | 'slug'>
-        & { content?: Maybe<Pick<ContentfulPostContent, 'raw'>>, thumbnail?: Maybe<{ fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }>, tag?: Maybe<Array<Maybe<Pick<ContentfulTag, 'title' | 'slug'>>>> }
+        & { content?: Maybe<(
+          Pick<ContentfulPostContent, 'raw'>
+          & { references?: Maybe<Array<Maybe<(
+            { __typename: 'ContentfulAsset' }
+            & Pick<ContentfulAsset, 'contentful_id'>
+            & { file?: Maybe<Pick<ContentfulAssetFile, 'url'>>, fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }
+          )>>> }
+        )>, thumbnail?: Maybe<{ fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }>, tag?: Maybe<Array<Maybe<Pick<ContentfulTag, 'title' | 'slug'>>>> }
       ) }> } };
 
 export type Unnamed_5_QueryVariables = Exact<{
