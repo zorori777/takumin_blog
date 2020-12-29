@@ -26,6 +26,10 @@ export const usePostQuery = () => {
                 srcSetWebp
               }
             }
+            tag {
+              slug
+              title
+            }
           }
         }
       }

@@ -43,7 +43,9 @@ const Layout = ({ children }: Props) => (
         <Box height={['60px', '80px']}>
           <Header />
         </Box>
-        <Box p={['36px 12px', '36px 0']}>{children}</Box>
+        <Box p={'36px 12px'} minHeight={'90vh'}>
+          {children}
+        </Box>
         <Box>
           <Footer />
         </Box>

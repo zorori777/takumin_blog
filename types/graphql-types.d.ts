@@ -3816,6 +3816,11 @@ export type ContentfulPostFieldsEnum =
   | 'tag___node_locale'
   | 'tag___title'
   | 'tag___slug'
+  | 'tag___spaceId'
+  | 'tag___createdAt'
+  | 'tag___updatedAt'
+  | 'tag___sys___type'
+  | 'tag___sys___revision'
   | 'tag___post'
   | 'tag___post___contentful_id'
   | 'tag___post___id'
@@ -3840,10 +3845,10 @@ export type ContentfulPostFieldsEnum =
   | 'tag___post___tag___node_locale'
   | 'tag___post___tag___title'
   | 'tag___post___tag___slug'
-  | 'tag___post___tag___post'
   | 'tag___post___tag___spaceId'
   | 'tag___post___tag___createdAt'
   | 'tag___post___tag___updatedAt'
+  | 'tag___post___tag___post'
   | 'tag___post___tag___children'
   | 'tag___post___spaceId'
   | 'tag___post___createdAt'
@@ -3863,11 +3868,6 @@ export type ContentfulPostFieldsEnum =
   | 'tag___post___internal___mediaType'
   | 'tag___post___internal___owner'
   | 'tag___post___internal___type'
-  | 'tag___spaceId'
-  | 'tag___createdAt'
-  | 'tag___updatedAt'
-  | 'tag___sys___type'
-  | 'tag___sys___revision'
   | 'tag___parent___id'
   | 'tag___parent___parent___id'
   | 'tag___parent___parent___children'
@@ -5225,11 +5225,11 @@ export type ContentfulTag = ContentfulReference & ContentfulEntry & Node & {
   node_locale: Scalars['String'];
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
-  post?: Maybe<Array<Maybe<ContentfulPost>>>;
   spaceId?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['Date']>;
   sys?: Maybe<ContentfulTagSys>;
+  post?: Maybe<Array<Maybe<ContentfulPost>>>;
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
@@ -5284,6 +5284,14 @@ export type ContentfulTagFieldsEnum =
   | 'node_locale'
   | 'title'
   | 'slug'
+  | 'spaceId'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'sys___type'
+  | 'sys___revision'
+  | 'sys___contentType___sys___type'
+  | 'sys___contentType___sys___linkType'
+  | 'sys___contentType___sys___id'
   | 'post'
   | 'post___contentful_id'
   | 'post___id'
@@ -5374,6 +5382,11 @@ export type ContentfulTagFieldsEnum =
   | 'post___tag___node_locale'
   | 'post___tag___title'
   | 'post___tag___slug'
+  | 'post___tag___spaceId'
+  | 'post___tag___createdAt'
+  | 'post___tag___updatedAt'
+  | 'post___tag___sys___type'
+  | 'post___tag___sys___revision'
   | 'post___tag___post'
   | 'post___tag___post___contentful_id'
   | 'post___tag___post___id'
@@ -5386,11 +5399,6 @@ export type ContentfulTagFieldsEnum =
   | 'post___tag___post___createdAt'
   | 'post___tag___post___updatedAt'
   | 'post___tag___post___children'
-  | 'post___tag___spaceId'
-  | 'post___tag___createdAt'
-  | 'post___tag___updatedAt'
-  | 'post___tag___sys___type'
-  | 'post___tag___sys___revision'
   | 'post___tag___parent___id'
   | 'post___tag___parent___children'
   | 'post___tag___children'
@@ -5446,14 +5454,6 @@ export type ContentfulTagFieldsEnum =
   | 'post___internal___mediaType'
   | 'post___internal___owner'
   | 'post___internal___type'
-  | 'spaceId'
-  | 'createdAt'
-  | 'updatedAt'
-  | 'sys___type'
-  | 'sys___revision'
-  | 'sys___contentType___sys___type'
-  | 'sys___contentType___sys___linkType'
-  | 'sys___contentType___sys___id'
   | 'parent___id'
   | 'parent___parent___id'
   | 'parent___parent___parent___id'
@@ -5546,11 +5546,11 @@ export type ContentfulTagFilterInput = {
   node_locale?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   slug?: Maybe<StringQueryOperatorInput>;
-  post?: Maybe<ContentfulPostFilterListInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulTagSysFilterInput>;
+  post?: Maybe<ContentfulPostFilterListInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
@@ -10260,11 +10260,11 @@ export type QueryContentfulTagArgs = {
   node_locale?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   slug?: Maybe<StringQueryOperatorInput>;
-  post?: Maybe<ContentfulPostFilterListInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulTagSysFilterInput>;
+  post?: Maybe<ContentfulPostFilterListInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
@@ -10624,6 +10624,12 @@ export type SiteFieldsEnum =
   | 'siteMetadata___description'
   | 'siteMetadata___isMediumUserDefined'
   | 'siteMetadata___deterministic'
+  | 'siteMetadata___socialLink___github___name'
+  | 'siteMetadata___socialLink___github___url'
+  | 'siteMetadata___socialLink___github___fontAwesomeIcon'
+  | 'siteMetadata___socialLink___twitter___name'
+  | 'siteMetadata___socialLink___twitter___url'
+  | 'siteMetadata___socialLink___twitter___fontAwesomeIcon'
   | 'port'
   | 'host'
   | 'polyfill'
@@ -10777,10 +10783,12 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   slug?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextFilterInput = {
   slug?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -10883,6 +10891,7 @@ export type SitePageFieldsEnum =
   | 'internal___type'
   | 'isCreatedByStatefulCreatePages'
   | 'context___slug'
+  | 'context___id'
   | 'pluginCreator___id'
   | 'pluginCreator___parent___id'
   | 'pluginCreator___parent___parent___id'
@@ -11385,6 +11394,7 @@ export type SiteSiteMetadata = {
   description?: Maybe<Scalars['String']>;
   isMediumUserDefined?: Maybe<Scalars['Boolean']>;
   deterministic?: Maybe<Scalars['Boolean']>;
+  socialLink?: Maybe<SiteSiteMetadataSocialLink>;
 };
 
 export type SiteSiteMetadataFilterInput = {
@@ -11392,6 +11402,41 @@ export type SiteSiteMetadataFilterInput = {
   description?: Maybe<StringQueryOperatorInput>;
   isMediumUserDefined?: Maybe<BooleanQueryOperatorInput>;
   deterministic?: Maybe<BooleanQueryOperatorInput>;
+  socialLink?: Maybe<SiteSiteMetadataSocialLinkFilterInput>;
+};
+
+export type SiteSiteMetadataSocialLink = {
+  github?: Maybe<SiteSiteMetadataSocialLinkGithub>;
+  twitter?: Maybe<SiteSiteMetadataSocialLinkTwitter>;
+};
+
+export type SiteSiteMetadataSocialLinkFilterInput = {
+  github?: Maybe<SiteSiteMetadataSocialLinkGithubFilterInput>;
+  twitter?: Maybe<SiteSiteMetadataSocialLinkTwitterFilterInput>;
+};
+
+export type SiteSiteMetadataSocialLinkGithub = {
+  name?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  fontAwesomeIcon?: Maybe<Scalars['String']>;
+};
+
+export type SiteSiteMetadataSocialLinkGithubFilterInput = {
+  name?: Maybe<StringQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  fontAwesomeIcon?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SiteSiteMetadataSocialLinkTwitter = {
+  name?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  fontAwesomeIcon?: Maybe<Scalars['String']>;
+};
+
+export type SiteSiteMetadataSocialLinkTwitterFilterInput = {
+  name?: Maybe<StringQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  fontAwesomeIcon?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SiteSortInput = {
@@ -11470,7 +11515,7 @@ export type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;
 
 export type Unnamed_3_Query = { allContentfulPost: { edges: Array<{ node: (
         Pick<ContentfulPost, 'title' | 'publishedAt' | 'slug'>
-        & { content?: Maybe<Pick<ContentfulPostContent, 'raw'>>, thumbnail?: Maybe<{ fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }> }
+        & { content?: Maybe<Pick<ContentfulPostContent, 'raw'>>, thumbnail?: Maybe<{ fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }>, tag?: Maybe<Array<Maybe<Pick<ContentfulTag, 'slug' | 'title'>>>> }
       ) }> } };
 
 export type ProjectsQueryQueryVariables = Exact<{ [key: string]: never; }>;
@@ -11488,13 +11533,10 @@ export type ProjectsQueryQuery = { contentfulAbout?: Maybe<{ projects?: Maybe<Ar
 export type SiteQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SiteQueryQuery = { contentfulAbout?: Maybe<(
-    Pick<ContentfulAbout, 'name' | 'roles'>
-    & { socialLinks?: Maybe<Array<Maybe<(
-      Pick<ContentfulSocialLink, 'url' | 'name'>
-      & { icon: ContentfulSocialLink['fontAwesomeIcon'] }
-    )>>> }
-  )>, site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'deterministic'>> }> };
+export type SiteQueryQuery = { site?: Maybe<{ siteMetadata?: Maybe<(
+      Pick<SiteSiteMetadata, 'deterministic'>
+      & { socialLink?: Maybe<{ github?: Maybe<Pick<SiteSiteMetadataSocialLinkGithub, 'name' | 'url' | 'fontAwesomeIcon'>>, twitter?: Maybe<Pick<SiteSiteMetadataSocialLinkTwitter, 'name' | 'url' | 'fontAwesomeIcon'>> }> }
+    )> }> };
 
 export type Unnamed_4_QueryVariables = Exact<{
   slug: Scalars['String'];
@@ -11503,8 +11545,31 @@ export type Unnamed_4_QueryVariables = Exact<{
 
 export type Unnamed_4_Query = { allContentfulPost: { edges: Array<{ node: (
         Pick<ContentfulPost, 'title' | 'publishedAt' | 'slug'>
-        & { content?: Maybe<Pick<ContentfulPostContent, 'raw'>>, thumbnail?: Maybe<{ fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }> }
+        & { content?: Maybe<(
+          Pick<ContentfulPostContent, 'raw'>
+          & { references?: Maybe<Array<Maybe<(
+            { __typename: 'ContentfulAsset' }
+            & Pick<ContentfulAsset, 'contentful_id'>
+            & { file?: Maybe<Pick<ContentfulAssetFile, 'url'>>, fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }
+          )>>> }
+        )>, thumbnail?: Maybe<{ fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }>, tag?: Maybe<Array<Maybe<Pick<ContentfulTag, 'title' | 'slug'>>>> }
       ) }> } };
+
+export type Unnamed_5_QueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type Unnamed_5_Query = { contentfulTag?: Maybe<(
+    Pick<ContentfulTag, 'title'>
+    & { post?: Maybe<Array<Maybe<(
+      Pick<ContentfulPost, 'slug' | 'title' | 'publishedAt'>
+      & { thumbnail?: Maybe<(
+        Pick<ContentfulAsset, 'title'>
+        & { fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }
+      )>, tag?: Maybe<Array<Maybe<Pick<ContentfulTag, 'id' | 'title' | 'slug'>>>> }
+    )>>> }
+  )> };
 
 export type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

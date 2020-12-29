@@ -4,11 +4,14 @@ import Tippy from '@tippy.js/react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { lighten } from 'polished';
-import { SocialLink as SocialLinkType } from '../types';
 import { getIconDefinition } from '../utils/icon-loader';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 
-type Props = SocialLinkType & {
+type Props = {
   invert?: boolean;
+  name: string;
+  url: string;
+  icon: IconName;
 };
 
 const SocialLink = ({ icon, name, url, invert }: Props) => {

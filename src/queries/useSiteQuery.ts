@@ -1,38 +1,28 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import { Landing, SocialLink } from '../types';
+import { SiteQueryQuery, SiteSiteMetadata } from '../../types/graphql-types';
 
-type QueryResponse = {
-  contentfulAbout: {
-    name: string;
-    roles: string[];
-    socialLinks: SocialLink[];
-  };
-  site: {
-    siteMetadata: {
-      deterministic: boolean;
-    };
-  };
-};
-
-export const useSiteQuery = (): Landing & { deterministic: boolean } => {
-  const { contentfulAbout, site } = useStaticQuery<QueryResponse>(graphql`
+export const useSiteQuery = () => {
+  const { site } = useStaticQuery<SiteQueryQuery>(graphql`
     query SiteQuery {
-      contentfulAbout {
-        name
-        roles
-        socialLinks {
-          url
-          name
-          icon: fontAwesomeIcon
-        }
-      }
       site {
         siteMetadata {
           deterministic
+          socialLink {
+            github {
+              name
+              url
+              fontAwesomeIcon
+            }
+            twitter {
+              name
+              url
+              fontAwesomeIcon
+            }
+          }
         }
       }
     }
   `);
 
-  return { ...contentfulAbout, ...site.siteMetadata };
+  return { ...(site!.siteMetadata as SiteSiteMetadata) };
 };
