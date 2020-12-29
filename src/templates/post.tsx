@@ -8,6 +8,7 @@ import theme from '../theme';
 import Layout from '../components/Layout';
 import { graphql } from 'gatsby';
 import { ContentfulPostConnection } from '../../types/graphql-types';
+import Tag from '../components/Tag';
 
 type Props = {
   data: {
@@ -22,7 +23,7 @@ const Post = ({ data }: Props) => {
         {data.allContentfulPost.edges.map((item) => {
           return (
             <Flex justifyContent={'center'} flexDirection={'column'}>
-              <Header
+              <Flex
                 justifyContent={'center'}
                 flexDirection={'column'}
                 alignItems="center"
@@ -34,7 +35,26 @@ const Post = ({ data }: Props) => {
                 <Text color={theme.colors.gray}>
                   {dayjs(item.node.publishedAt).format(dateTimeFormat)}
                 </Text>
-              </Header>
+
+                {item.node.tag ? (
+                  <Flex
+                    width={'100%'}
+                    justifyContent="center"
+                    p={'8px 0'}
+                    alignItems="center"
+                  >
+                    {item.node.tag.map((_tag) => {
+                      return (
+                        <Box mr={2}>
+                          <Tag path={`/tags/${_tag?.slug}`}>#{_tag!.title}</Tag>
+                        </Box>
+                      );
+                    })}
+                  </Flex>
+                ) : (
+                  <></>
+                )}
+              </Flex>
               <Flex justifyContent={'center'}>
                 <Content width={[1, 8 / 10]}>
                   <div>
@@ -61,8 +81,6 @@ const Content = styled(Box)`
   background: #fff;
 `;
 
-const Header = styled(Flex)``;
-
 export const query = graphql`
   query($slug: String!) {
     allContentfulPost(filter: { slug: { eq: $slug } }) {
@@ -81,6 +99,10 @@ export const query = graphql`
               srcWebp
               srcSetWebp
             }
+          }
+          tag {
+            title
+            slug
           }
         }
       }

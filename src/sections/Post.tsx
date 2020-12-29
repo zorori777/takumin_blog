@@ -3,7 +3,7 @@ import { Fade } from 'react-awesome-reveal';
 import Section from '../components/Section';
 import { CardContainer } from '../components/Card';
 import usePostQuery from '../queries/usePostQuery';
-import { Post as PostCard } from '../components/Post';
+import CardPost from '../components/CardPost';
 
 const Post = () => {
   const data = usePostQuery();
@@ -20,7 +20,7 @@ const Post = () => {
           style={{ width: '100%' }}
         >
           {data.allContentfulPost.edges.map((p) => (
-            <PostCard {...p.node} key={p.node.title} />
+            <CardPost {...p.node} key={p.node.title} />
           ))}
         </Fade>
       </CardContainer>
