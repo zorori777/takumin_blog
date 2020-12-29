@@ -1,26 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text, Box, Flex } from 'rebass/styled-components';
-import { Fade } from 'react-awesome-reveal';
-import SocialLink from './SocialLink';
-import { useSiteQuery } from '../queries/useSiteQuery';
+import { Text, Box } from 'rebass/styled-components';
+import theme from '../theme';
 
 const Footer = () => {
-  const { socialLinks } = useSiteQuery();
-
   return (
     <Box p={[2, 3]} backgroundColor="#fff" id="footer">
       <FooterContainer>
-        <Fade direction="left" triggerOnce></Fade>
-        <Flex justifyContent="center">
-          <Fade direction="right" triggerOnce cascade damping={0.5}>
-            {socialLinks.map((sl) => (
-              <Box mx={[2, 3]} fontSize={[4, 5]} key={sl.name}>
-                <SocialLink {...sl} invert />
-              </Box>
-            ))}
-          </Fade>
-        </Flex>
+        <Box mb={2}>
+          <Text fontSize={3} color={theme.colors.background}>
+            © 2021, takumin
+          </Text>
+        </Box>
       </FooterContainer>
     </Box>
   );
@@ -29,7 +20,7 @@ const Footer = () => {
 const FooterContainer = styled.div`
   max-width: 1366px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;

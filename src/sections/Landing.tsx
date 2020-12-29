@@ -3,16 +3,14 @@ import { Heading, Flex, Box, Text } from 'rebass/styled-components';
 import TextLoop from 'react-text-loop';
 import Section from '../components/Section';
 import SocialLink from '../components/SocialLink';
-import { useScrollSection } from 'react-scroll-section';
 import MouseIcon from '../components/ScrollIcon';
-import Triangle from '../components/Triangle';
 import { useSiteQuery } from '../queries/useSiteQuery';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 const centerHorizontally = { marginRight: 'auto', marginLeft: 'auto' };
 
 const LandingPage = () => {
-  const { name, roles, socialLinks, deterministic } = useSiteQuery();
-  const aboutSection = useScrollSection('about');
+  const { socialLink } = useSiteQuery();
 
   return (
     <Section.Container id="home">
@@ -36,46 +34,20 @@ const LandingPage = () => {
       </Heading>
 
       <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
-        {socialLinks.map((sl) => (
-          <Box mx={3} fontSize={[5, 6, 6]} key={sl.name}>
-            <SocialLink {...sl} />
+        {Object.values(socialLink!).map((sl) => (
+          <Box mx={3} fontSize={[5, 6, 6]} key={sl?.name}>
+            <SocialLink
+              name={sl!.name!}
+              icon={sl!.fontAwesomeIcon as IconName}
+              url={sl!.url!}
+            />
           </Box>
         ))}
       </Flex>
 
-      <MouseIcon onClick={aboutSection.onClick} />
+      <MouseIcon onClick={() => {}} />
     </Section.Container>
   );
 };
-
-const Background = () => (
-  <>
-    <Triangle
-      color="muted"
-      height={['35vh', '80vh']}
-      width={['95vw', '60vw']}
-    />
-
-    <Triangle
-      color="secondary"
-      height={['38vh', '80vh']}
-      width={['50vw', '35vw']}
-    />
-
-    <Triangle
-      color="primary"
-      height={['25vh', '35vh']}
-      width={['75vw', '60vw']}
-      position="top-right"
-    />
-
-    <Triangle
-      color="muted"
-      height={['20vh', '20vh']}
-      width={['100vw', '100vw']}
-      position="bottom-right"
-    />
-  </>
-);
 
 export default LandingPage;

@@ -6,7 +6,7 @@ import { ContentfulPost } from '../../types/graphql-types';
 import Img, { FluidObject } from 'gatsby-image';
 import dayjs, { dateFormat } from '../utils/dayJs';
 import theme from '../theme';
-import { Link, navigate } from 'gatsby';
+import { Link } from 'gatsby';
 import Tag from '../components/Tag';
 
 type Props = any;
@@ -42,7 +42,6 @@ export const CardPost = ({
           <Flex>
             <Box></Box>
             {tag.map((_tag: any) => {
-              console.debug(_tag);
               return (
                 <TagContent key={_tag.slug}>
                   <Tag path={`/tags/${_tag.slug}`}>#{_tag.title}</Tag>
