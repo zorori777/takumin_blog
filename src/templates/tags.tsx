@@ -24,22 +24,26 @@ const Tags = ({ data }: Props) => {
         </Heading>
       </Flex>
 
-      <Flex flexDirection={['column', 'row']}>
-        {posts!.map((post) => {
-          return (
-            <Box width={['initial', '350px']} m={24}>
-              <CardPost
-                tag={post!.tag}
-                slug={post!.slug}
-                title={post?.title}
-                publishedAt={post?.publishedAt}
-                thumbnail={post?.thumbnail}
-                key={post?.title}
-              />
-            </Box>
-          );
-        })}
-      </Flex>
+      {posts ? (
+        <Flex flexDirection={['column', 'row']}>
+          {posts!.map((post) => {
+            return (
+              <Box width={['initial', '350px']} m={24}>
+                <CardPost
+                  tag={post!.tag}
+                  slug={post!.slug}
+                  title={post?.title}
+                  publishedAt={post?.publishedAt}
+                  thumbnail={post?.thumbnail}
+                  key={post?.title}
+                />
+              </Box>
+            );
+          })}
+        </Flex>
+      ) : (
+        <></>
+      )}
     </Layout>
   );
 };
