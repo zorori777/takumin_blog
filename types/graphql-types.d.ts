@@ -11430,6 +11430,11 @@ export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 export type Unnamed_1_Query = { placeholderImage?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> };
 
+export type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Unnamed_2_Query = { placeholderImage?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> };
+
 export type AboutMeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -11460,10 +11465,10 @@ export type MediumPostQueryQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<Si
     )>>> }
   )> };
 
-export type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
+export type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Unnamed_2_Query = { allContentfulPost: { edges: Array<{ node: (
+export type Unnamed_3_Query = { allContentfulPost: { edges: Array<{ node: (
         Pick<ContentfulPost, 'title' | 'publishedAt' | 'slug'>
         & { content?: Maybe<Pick<ContentfulPostContent, 'raw'>>, thumbnail?: Maybe<{ fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }> }
       ) }> } };
@@ -11491,12 +11496,12 @@ export type SiteQueryQuery = { contentfulAbout?: Maybe<(
     )>>> }
   )>, site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'deterministic'>> }> };
 
-export type Unnamed_3_QueryVariables = Exact<{
+export type Unnamed_4_QueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-export type Unnamed_3_Query = { allContentfulPost: { edges: Array<{ node: (
+export type Unnamed_4_Query = { allContentfulPost: { edges: Array<{ node: (
         Pick<ContentfulPost, 'title' | 'publishedAt' | 'slug'>
         & { content?: Maybe<Pick<ContentfulPostContent, 'raw'>>, thumbnail?: Maybe<{ fluid?: Maybe<Pick<ContentfulFluid, 'base64' | 'tracedSVG' | 'srcWebp' | 'srcSetWebp'>> }> }
       ) }> } };
