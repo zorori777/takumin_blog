@@ -41,7 +41,7 @@ export const CardPost = ({
         {tag ? (
           <Flex>
             <Box></Box>
-            {tag.map((_tag) => {
+            {tag.map((_tag: any) => {
               console.debug(_tag);
               return (
                 <TagContent key={_tag.slug}>
