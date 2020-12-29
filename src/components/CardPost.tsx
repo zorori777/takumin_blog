@@ -9,7 +9,12 @@ import theme from '../theme';
 import { Link } from 'gatsby';
 import Tag from '../components/Tag';
 
-type Props = any;
+type PostType = Pick<
+  ContentfulPost,
+  'title' | 'thumbnail' | 'publishedAt' | 'slug' | 'tag'
+>;
+
+type Props = PostType;
 
 export const CardPost = ({
   title,
@@ -41,10 +46,10 @@ export const CardPost = ({
         {tag ? (
           <Flex>
             <Box></Box>
-            {tag.map((_tag: any) => {
+            {tag.map((_tag) => {
               return (
-                <TagContent key={_tag.slug}>
-                  <Tag path={`/tags/${_tag.slug}`}>#{_tag.title}</Tag>
+                <TagContent key={_tag!.slug}>
+                  <Tag path={`/tags/${_tag!.slug}`}>#{_tag!.title}</Tag>
                 </TagContent>
               );
             })}
