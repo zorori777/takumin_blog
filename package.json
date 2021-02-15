@@ -31,12 +31,12 @@
     "PWA",
     "portfolio"
   ],
-  "author": "Ema Suriano",
+  "author": "zorori777",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/EmaSuriano/gatsby-starter-mate/issues"
   },
-  "homepage": "https://github.com/EmaSuriano/gatsby-starter-mate#readme",
+  "homepage": "http://takumin-blog.zorori777.vercel.app",
   "dependencies": {
     "@babel/preset-env": "^7.12.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
