@@ -67,5 +67,17 @@ module.exports = {
   siteMetadata: {
     isMediumUserDefined: !!about.mediumUser,
     deterministic: !!DETERMINISTIC,
+    socialLink: {
+      github: {
+        name: 'Github',
+        url: 'https://github.com/zorori777',
+        fontAwesomeIcon: 'github',
+      },
+      twitter: {
+        name: 'Twitter',
+        url: 'https://twitter.com/takumi_work',
+        fontAwesomeIcon: 'twitter',
+      },
+    },
   },
 };

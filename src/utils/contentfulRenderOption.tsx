@@ -5,6 +5,7 @@ import { BLOCKS, MARKS, Text } from '@contentful/rich-text-types';
 import styled from 'styled-components';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { Image, Flex } from 'rebass';
 
 export const contentfulRenderOptions: Options = {
   renderNode: {
@@ -19,6 +20,19 @@ export const contentfulRenderOptions: Options = {
         return <div>{children}</div>;
       }
       return <p>{children}</p>;
+    },
+    [BLOCKS.EMBEDDED_ASSET]: (node) => {
+      return (
+        <Flex justifyContent="center">
+          <Image
+            sx={{
+              width: ['100%', '50%'],
+              borderRadius: 8,
+            }}
+            src={node.data.target.file.url}
+          />
+        </Flex>
+      );
     },
   },
   renderMark: {

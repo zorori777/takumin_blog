@@ -5,7 +5,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // 使うテンプレのパス
   const postTemplate = path.resolve(`./src/templates/post.tsx`);
-  const result = await graphql(
+  const postResult = await graphql(
     `
       {
         allContentfulPost {
@@ -20,11 +20,11 @@ exports.createPages = async ({ graphql, actions }) => {
     `,
   );
 
-  if (result.errors) {
-    throw result.errors;
+  if (postResult.errors) {
+    throw postResult.errors;
   }
 
-  const posts = result.data.allContentfulPost.edges;
+  const posts = postResult.data.allContentfulPost.edges;
 
   posts.forEach((post) => {
     createPage({
@@ -32,6 +32,38 @@ exports.createPages = async ({ graphql, actions }) => {
       component: postTemplate,
       context: {
         slug: post.node.slug,
+      },
+    });
+  });
+  const tagTemplate = path.resolve(`./src/templates/tags.tsx`);
+  const tagResult = await graphql(
+    `
+      {
+        allContentfulTag {
+          edges {
+            node {
+              slug
+              id
+            }
+          }
+        }
+      }
+    `,
+  );
+
+  if (tagResult.errors) {
+    throw tagResult.errors;
+  }
+
+  const tags = tagResult.data.allContentfulTag.edges;
+
+  tags.forEach((tag) => {
+    createPage({
+      path: `tags/${tag.node.slug}`,
+      component: tagTemplate,
+      context: {
+        id: tag.node.id,
+        slug: tag.node.slug,
       },
     });
   });
